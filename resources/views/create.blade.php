@@ -45,10 +45,7 @@
                 <input type="text" class="form-control" name="image" id="image" required>
             </div>
 
-
-            <button class="btn btn-outline-secondary btn-submit" type="submit"><font
-                    style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">Create</font></font></button>
+            <button class="btn btn-outline-secondary btn-submit" type="submit">Create</button>
         </form>
 
     </div>
