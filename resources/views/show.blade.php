@@ -13,18 +13,17 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ $newsItem->title }}</li>
             </ol>
         </nav>
-
         <div class="row">
             <div class="col-md-12">
                 <h2>{{ $newsItem->title }}</h2>
                 <p>{{ $newsItem->publication_date }}</p>
-                <div class="d-flex">
+                <div class="d-flex justify-content-center align-items-center">
                     @if($newsItem->image)
                         <img src="{{ $newsItem->image }}" alt="{{ $newsItem->title }}" class="img-fluid"
-                             style="height: 400px; float: right; margin-right: 50px">
+                             style="max-height: 400px;">
                     @endif
-                    <p class="ml-4">{{ $newsItem->description }}</p>
                 </div>
+                <p class="mt-5">{{ $newsItem->description }}</p>
             </div>
         </div>
     </div>
@@ -35,15 +34,31 @@
 
                 <h4 class="mb-3">Feedback</h4>
 
-                <form id="feedbackForm" action="" method="POST">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <form id="feedbackForm" action="{{ route('feedback.create', ['id' => $newsItem->id]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-3">
-                        <label for="name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Name</font></font></label>
+                        <label for="name">Name</label>
                         <input type="text" class="form-control" name="name" id="name" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="email"><font style="vertical-align: inherit;"><font
-                                    style="vertical-align: inherit;">Email</font></font></label>
+                        <label for="email">Email</label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="" value=""
                                required>
                     </div>
@@ -52,10 +67,22 @@
                         <div class="form-group">
                             <label for="comment">Comment</label>
                             <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                            <small id="comment-count" class="form-text text-muted">0/200</small>
                         </div>
                     </div>
 
-                    <button class="btn btn-outline-secondary btn-submit" type="submit">Send</button>
+                    <script>
+                        const commentTextarea = document.getElementById('comment');
+                        const commentCount = document.getElementById('comment-count');
+
+                        commentTextarea.addEventListener('input', function () {
+                            const remaining = commentTextarea.value.length;
+
+                            commentCount.textContent = `${remaining}/200`;
+                        });
+                    </script>
+
+                    <button class="btn btn-outline-secondary mt-2 btn-submit" type="submit">Send</button>
                 </form>
 
 

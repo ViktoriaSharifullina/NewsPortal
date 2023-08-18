@@ -30,6 +30,7 @@
                     <li><a class="dropdown-item" href="/manage">Manage</a></li>
                     <li><a class="dropdown-item" href="/create">Create</a></li>
                     <li><a class="dropdown-item" href="/account">Profile</a></li>
+                    <li><a class="dropdown-item" href="/feedback">Feedback</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

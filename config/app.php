@@ -185,4 +185,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'uploads_directory' => public_path('uploads'),
+
 ];

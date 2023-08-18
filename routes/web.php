@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,12 +21,16 @@ Route::get('/account', function () {
     return view('account');
 });
 
+Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
+Route::delete('feedback/{id}/delete', [FeedbackController::class, 'delete'])->name('feedback.delete');
+
 Route::get('/create', function () {
     return view('create');
 })->name('create');
 Route::post('/create', [NewsController::class, 'create'])->name('news.create');
 
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
+Route::post('/news/{id}', [FeedbackController::class, 'create'])->name('feedback.create');
 
 Route::get('/manage', [NewsController::class, 'manage'])->name('news.manage');
 Route::prefix('manage')->group(function () {
