@@ -7,6 +7,12 @@
 
 @section('content')
     <div class="container mt-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('news.index') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Manage</li>
+            </ol>
+        </nav>
         <div class="row mb-2">
             @foreach($news as $item)
                 <div class="col-md-6">

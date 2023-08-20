@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [NewsController::class, 'index'])->name('news.index');
 
-Route::get('/account', function () {
-    return view('account');
-});
+Route::get('/account', [UserController::class, 'showAccountForm'])->name('account');
+Route::post('/account', [UserController::class, 'update'])->name('account.update');
+
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+Route::get('/signup', function () {
+    return view('signup');
+})->name('signup');
+Route::post('/signup', [UserController::class, 'signup'])->name('signup.user');
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+Route::post('/login', [UserController::class, 'login'])->name('login.user');
 
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::delete('feedback/{id}/delete', [FeedbackController::class, 'delete'])->name('feedback.delete');

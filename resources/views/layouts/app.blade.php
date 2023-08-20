@@ -10,6 +10,7 @@
     @yield('style')
 
     @vite(['resources/css/app.css'])
+    @vite(['resources/css/home.css'])
 </head>
 <body>
 
@@ -21,27 +22,59 @@
                 <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
             </ul>
             <div class="dropdown text-end">
-                <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
-                   data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ Vite::asset('resources/images/user.png') }}" alt="mdo" width="32" height="32"
-                         class="rounded-circle">
-                </a>
-                <ul class="dropdown-menu text-small" style="">
-                    <li><a class="dropdown-item" href="/manage">Manage</a></li>
-                    <li><a class="dropdown-item" href="/create">Create</a></li>
-                    <li><a class="dropdown-item" href="/account">Profile</a></li>
-                    <li><a class="dropdown-item" href="/feedback">Feedback</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
+                @if(Auth::check())
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ Vite::asset('resources/images/user.png') }}" alt="mdo" width="32" height="32"
+                             class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small" style="">
+                        <li><a class="dropdown-item" href="/manage">Manage news</a></li>
+                        <li><a class="dropdown-item" href="/create">Create news</a></li>
+                        <li><a class="dropdown-item" href="/account">Account</a></li>
+                        <li><a class="dropdown-item" href="/feedback">Feedback</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}">Sign out</a></li>
+
+                    </ul>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-outline-secondary btn-submit me-3">Login</a>
+                    <a href="{{ route('signup') }}" class="btn btn-outline-secondary btn-submit">Sign up</a>
+                @endif
+
             </div>
         </div>
     </div>
 </header>
 
 @yield('content')
+
+<div class="container" style="margin-top: 200px;">
+    <footer class="py-5">
+        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <p>© 2022 Company, Inc. All rights reserved.</p>
+            <ul class="list-unstyled d-flex">
+                <li class="ms-3"><a class="link-dark" href="#">
+                        <svg class="bi" width="24" height="24">
+                            <use xlink:href="#twitter"></use>
+                        </svg>
+                    </a></li>
+                <li class="ms-3"><a class="link-dark" href="#">
+                        <svg class="bi" width="24" height="24">
+                            <use xlink:href="#instagram"></use>
+                        </svg>
+                    </a></li>
+                <li class="ms-3"><a class="link-dark" href="#">
+                        <svg class="bi" width="24" height="24">
+                            <use xlink:href="#facebook"></use>
+                        </svg>
+                    </a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

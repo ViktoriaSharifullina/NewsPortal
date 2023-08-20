@@ -1,0 +1,26 @@
+/*.container {*/
+/*    max-width: 100%;*/
+/*    padding-right: 15px;*/
+/*    padding-left: 15px;*/
+/*    margin-right: auto;*/
+/*    margin-left: auto;*/
+/*}*/
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+/* Стили для колонок */
+.col-md-6 {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 50%;
+}
+
+/* Меняем порядок для второй колонки на больших экранах */
+.order-md-2 {
+    order: 2;
+}

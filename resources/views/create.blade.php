@@ -3,6 +3,14 @@
 @section('content')
 
     <div class="container col-md-4 order-md-1 mt-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('news.index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('news.manage') }}">Manage</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Create</li>
+            </ol>
+        </nav>
+
         <h4 class="mb-3">Create news</h4>
 
         @if($errors->any())
