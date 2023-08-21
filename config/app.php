@@ -18,6 +18,9 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'mail_username' => env('MAIL_USERNAME'),
+    'mail_from_address' => env('MAIL_FROM_ADDRESS'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -42,7 +45,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -184,7 +187,5 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
-
-    'uploads_directory' => public_path('uploads'),
 
 ];

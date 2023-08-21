@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\FeedbackMail;
 use App\Models\Feedback;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class FeedbackController extends Controller
@@ -30,6 +32,9 @@ class FeedbackController extends Controller
             'email' => $data['email'],
             'comment' => $data['comment'],
         ]);
+
+        $feedbackEmail = config('app.mail_username');
+        Mail::to($feedbackEmail)->send(new FeedbackMail($data));
 
         return back()->with('success', 'Feedback submitted successfully');
     }
