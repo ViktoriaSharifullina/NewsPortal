@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @yield('meta')
     <title>NEWS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -51,7 +52,7 @@
 
 @yield('content')
 
-<div class="container" style="margin-top: 200px;">
+<div class="container" style="margin-top: 100px;">
     <footer class="py-5">
         <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
             <p>© 2022 Company, Inc. All rights reserved.</p>

@@ -2,3 +2,33 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
 }
 
+.news-item {
+    height: 520px;
+    /*overflow: hidden;*/
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination .page-item {
+    display: inline-block;
+    margin-right: 0px;
+}
+
+.pagination .page-link {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #979797;
+    color: #fff;
+    /*border-color: #565656;*/
+}
+
+.pagination .page-link:hover {
+    background-color: #f0f0f0;
+}

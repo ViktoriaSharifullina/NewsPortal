@@ -1,5 +1,11 @@
 @extends('layouts/app')
 
+@section('meta')
+    <meta name="description" content="{{ $newsItem->meta_description }}">
+    <meta name="keywords" content="{{ $newsItem->meta_keywords }}">
+    <title>{{ $newsItem->meta_title }}</title>
+@endsection
+
 @section('style')
     @vite(['resources/css/home.css'])
 @endsection

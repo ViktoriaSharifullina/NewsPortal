@@ -14,7 +14,7 @@ class NewsController extends Controller
 {
     public function create(Request $request): RedirectResponse
     {
-        $data = $request->validate([
+        $request->validate([
             'title' => 'required',
             'description' => 'required',
             'pub-date' => 'required|date',
@@ -22,10 +22,13 @@ class NewsController extends Controller
         ]);
 
         News::create([
-            'title' => $data['title'],
-            'description' => $data['description'],
-            'publication_date' => $data['pub-date'],
-            'image' => $data['image'],
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'publication_date' => $request->input('pub-date'),
+            'image' => $request->input('image'),
+            'meta_title' => $request->input('meta_title'),
+            'meta_description' => $request->input('meta_description'),
+            'meta_keywords' => $request->input('meta_keywords'),
         ]);
 
         return redirect()->route('create')->with('success', 'News created successfully.');
@@ -33,7 +36,7 @@ class NewsController extends Controller
 
     public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
-        $news = News::orderBy('publication_date', 'desc')->get();
+        $news = News::orderBy('publication_date', 'desc')->paginate(4);
         return view('home', compact('news'));
     }
 
