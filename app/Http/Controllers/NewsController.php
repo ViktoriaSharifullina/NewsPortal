@@ -74,6 +74,9 @@ class NewsController extends Controller
             'description' => $request->input('description'),
             'publication_date' => Carbon::createFromFormat('Y-m-d', $request->input('pub-date')),
             'image' => $request->input('image'),
+            'meta_title' => $request->input('meta_title'),
+            'meta_description' => $request->input('meta_description'),
+            'meta_keywords' => $request->input('meta_keywords'),
         ]);
 
         return redirect()->route('news.edit.form', $id)
